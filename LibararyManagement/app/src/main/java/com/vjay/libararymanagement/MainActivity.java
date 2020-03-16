@@ -22,7 +22,7 @@ import com.vjay.libararymanagement.model.AppUser;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    public static final String LOGIN_USER_ARG = "LOGIN_USER";
     private EditText username;
     private EditText password;
 
@@ -40,48 +40,55 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Login clicked>>>>>>>>>>>>>>>>>");
         String userNameTxt = username.getText().toString();
         String passwordTxt = password.getText().toString();
+        Log.d(TAG, "Login clicked>>>>>>>>>>>>>>>>>"+userNameTxt+ "-"+passwordTxt);
+        if(userNameTxt == null || userNameTxt.isEmpty() || passwordTxt.isEmpty() ||  passwordTxt == null){
+            Toast.makeText(this, "Please provide both username and password", Toast.LENGTH_SHORT).show();
+            return;
+        }
         db.collection("users").document(userNameTxt).get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            if(documentSnapshot.exists()){
-                                String dialogMSfg = "";
-                                //Toast.makeText(MainActivity.this, "User found !", Toast.LENGTH_SHORT).show();
-                                AppUser user  = documentSnapshot.toObject(AppUser.class);
-                                if(user.getPassword().equals(passwordTxt)){
-                                    dialogMSfg = "User signed in succesfully!";
-                                }else{
-                                    dialogMSfg = "Invalid password";
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (!documentSnapshot.exists()) {
+                        Toast.makeText(MainActivity.this, "User not found !", Toast.LENGTH_SHORT).show();
+                    } else {
+                        AppUser user = documentSnapshot.toObject(AppUser.class);
+                        if(user.getPassword().equals(passwordTxt)){
+                            clearInputField();
+                            Intent intent = new Intent(MainActivity.this, DashBoard.class);
+                            intent.putExtra(LOGIN_USER_ARG ,user);
+                            startActivity(intent);
+                        }else{
+                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                            alertDialog.setMessage("Invalid password");
+                            alertDialog.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
                                 }
-                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-                                alertDialog.setMessage(dialogMSfg);
-                                alertDialog.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        //dismiss the dialog
-                                    }
-                                });
-                                alertDialog.create().show();
-
-
-                            }else{
-                                Toast.makeText(MainActivity.this, "User not found !", Toast.LENGTH_SHORT).show();
-                            }
+                            });
+                            alertDialog.create().show();
+                        }
                     }
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "Error adding document");
-                        Toast.makeText(MainActivity.this, "User fetch failed !", Toast.LENGTH_SHORT).show();
-                    }
+                .addOnFailureListener(e -> {
+                    Log.d(TAG, "Error adding document..."+e.getMessage());
+                    Toast.makeText(MainActivity.this, "User fetch failed !", Toast.LENGTH_SHORT).show();
                 });
     }
 
+    private void clearInputField(){
+        username.getText().clear();
+        password.getText().clear();
+    }
     public void gotoRegister(View v) {
 
         Intent intent = new Intent(this, ResgiterActivity.class);
         startActivity(intent);
 
+    }
+
+
+    public void gotoScanner(View v) {
+        Intent intent = new Intent(this, QrCodeScannerActivity.class);
+        startActivity(intent);
     }
 
 }

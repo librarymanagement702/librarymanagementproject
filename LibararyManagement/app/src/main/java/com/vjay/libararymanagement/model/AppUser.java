@@ -1,6 +1,8 @@
 package com.vjay.libararymanagement.model;
 
-public class AppUser {
+import java.io.Serializable;
+
+public class AppUser implements Serializable {
     private String name;
     private String userName;
     private String registerNumber;
