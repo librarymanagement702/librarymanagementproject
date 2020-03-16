@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "891348389157",
+    "firebase_url": "https://libararymanagement.firebaseio.com",
+    "project_id": "libararymanagement",
+    "storage_bucket": "libararymanagement.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891348389157:android:c750f2b20c27e6839edecc",
+        "android_client_info": {
+          "package_name": "com.vjay.libararymanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891348389157-i6ovsfppvk674sh52gjdu68podo2i5rq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vjay.libararymanagement",
+            "certificate_hash": "8dd94d0fc8353c58bd23a67d6b483f820d7cdb5b"
+          }
+        },
+        {
+          "client_id": "891348389157-3eqmq8p2hhtj35nchnt1f737hlirr3iu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUA2VMO4KTPv8MGXESrKOSW6ipUXOUWz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891348389157-3eqmq8p2hhtj35nchnt1f737hlirr3iu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
