@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddBookActivity">
+
+    <TextView
+        android:id="@+id/addBookHeader"
+        android:layout_width="229dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="52dp"
+        android:text="Add book"
+        android:textSize="30sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/abBookTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.033" />
+
+    <EditText
+        android:id="@+id/abBookTitle"
+        android:layout_width="215dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:hint="Book Title*"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/abAuthorName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/abAuthorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:ems="10"
+        android:hint="Author name*"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/abBookDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/abBookDesc"
+        android:layout_width="205dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="36dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/abBookCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/abBookCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="92dp"
+        android:ems="10"
+        android:hint="No of Books*"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/abAddBook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/abAddBook"
+        android:layout_width="202dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="120dp"
+        android:text="Add New Book"
+        android:onClick="addNewBook"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
